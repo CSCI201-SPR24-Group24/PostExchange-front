@@ -1,13 +1,17 @@
 // src/Navbar.js
 
-// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, } from 'react-bootstrap';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+//import NavDropdown from 'react-bootstrap/NavDropdown';
+
+const NavigationBar = ({isLoggedIn}) => {
 
 
+  useEffect(() => {
+    const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  }, []);
 
-const NavigationBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -27,9 +31,17 @@ const NavigationBar = () => {
             <LinkContainer to="/searchuser">
               <Nav.Link>Search User</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/userprofile">
-              <Nav.Link>User Profile</Nav.Link>
-            </LinkContainer>
+            {isLoggedIn ? (
+              <React.Fragment>
+                <LinkContainer to="/userprofile">
+                  <Nav.Link>User Profile</Nav.Link>
+                </LinkContainer>
+              </React.Fragment>
+            ) : (
+              <LinkContainer to="/login">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
