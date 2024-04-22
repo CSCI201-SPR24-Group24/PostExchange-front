@@ -1,0 +1,98 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+  }
+  
+  .gallery-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .activities-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .recent-activity, .information {
+    width: 49%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    height: 320px;
+  }
+  
+  .postcard-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .postcard-image {
+    max-height: 140px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .postcard-image:last-child {
+    margin-right: 0;
+  }
+  
+  .information-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .information-text {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .information-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .information-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .activity-entry .activity-text {
+    font-size: 1.2em;
+  }
+  
+  .timestamp {
+    font-size: 0.8em;
+    color: #888;
+  }
+  
+  .activity-entry {
+    margin-bottom: 10px;
+  }
+  
+  .recent-activity {
+    position: relative;
+  }
+  
+  .recent-activity-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 80px;
+    width: auto;
+    margin: 10px;
+  }
+  
