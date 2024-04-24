@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import NavigationBar from './navBar';
 
-const LoginForm = ({setLogin}) => {
+const Login = ({loginToken, setLoginToken, setLoginState}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  // if(loginToken) {
+  //   navigate("/userprofile");
+  // }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Login Submitted', { email, password });
-    // Add your logic to handle the login submission here
+    // console.log('Login Submitted', { email, password });
+    // // Add your logic to handle the login submission here
 
     const user = 
     {
@@ -31,10 +34,11 @@ const LoginForm = ({setLogin}) => {
         }
     };
 
-    localStorage.setItem('userProfile', JSON.stringify(user));
-    sessionStorage.setItem('userProfile', JSON.stringify(user));
+    // localStorage.setItem('userProfile', JSON.stringify(user));
+    // sessionStorage.setItem('userProfile', JSON.stringify(user));
     
-    setLogin(true);
+    setLoginToken(user.data);
+    setLoginState(true);
     navigate('/');
   };
 
@@ -74,4 +78,4 @@ const LoginForm = ({setLogin}) => {
   );
 };
 
-export default LoginForm;
+export default Login;

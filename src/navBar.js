@@ -5,12 +5,33 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, } from 'react-bootstrap';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const NavigationBar = ({isLoggedIn}) => {
+const NavigationBar = ({loginToken, loginState}) => {
 
 
-  useEffect(() => {
-    const userProfile = JSON.parse(localStorage.getItem('userProfile'));
-  }, []);
+  // useEffect(() => {
+  //   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  // }, []);
+
+  if(loginToken) {
+    console.log(loginToken);
+  }
+
+  // var prof_log = () => {
+  //   if(loginToken !-= {}) {
+  //     return (
+  //       <React.Fragment>
+  //         <LinkContainer to="/userprofile">
+  //           <Nav.Link>User Profile</Nav.Link>
+  //         </LinkContainer>
+  //       </React.Fragment>
+  //     );
+  //   }
+  //   return (
+  //     <LinkContainer to="/login">
+  //       <Nav.Link>Login</Nav.Link>
+  //     </LinkContainer>
+  //   );
+  // }
 
   return (
     <Navbar bg="light" expand="lg">
@@ -31,7 +52,7 @@ const NavigationBar = ({isLoggedIn}) => {
             <LinkContainer to="/searchuser">
               <Nav.Link>Search User</Nav.Link>
             </LinkContainer>
-            {isLoggedIn ? (
+            {loginState ? (
               <React.Fragment>
                 <LinkContainer to="/userprofile">
                   <Nav.Link>User Profile</Nav.Link>
