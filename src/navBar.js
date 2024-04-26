@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, } from 'react-bootstrap';
-//import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const NavigationBar = ({loginToken, loginState}) => {
 
@@ -47,7 +47,14 @@ const NavigationBar = ({loginToken, loginState}) => {
               <Nav.Link>Postcards</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/gallery">
-              <Nav.Link>Gallery</Nav.Link>
+              <NavDropdown title="Gallery" id="basic-nav-dropdown">
+                <LinkContainer to="/gallery">
+                  <NavDropdown.Item>Global Gallery</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/usergallery">
+                  <NavDropdown.Item>Personal Gallery</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
             </LinkContainer>
             <LinkContainer to="/searchuser">
               <Nav.Link>Search User</Nav.Link>

@@ -34,8 +34,8 @@ const Login = ({loginToken, setLoginToken, setLoginState}) => {
         }
     };
 
-    // localStorage.setItem('userProfile', JSON.stringify(user));
-    // sessionStorage.setItem('userProfile', JSON.stringify(user));
+    localStorage.setItem('userProfile', JSON.stringify(user));
+    sessionStorage.setItem('userProfile', JSON.stringify(user));
     
     setLoginToken(user.data);
     setLoginState(true);

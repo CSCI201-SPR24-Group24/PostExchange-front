@@ -9,12 +9,13 @@ import UserProfile from '../Profile/UserProfile';
 import Login from '../Login/Login';
 import useLoginToken from './LoginToken';
 import useToken from '../useToken';
+import Gallery from '../Gallery.js';
 
 
 
 const Home = () => <div>Home Page</div>;
 const Postcards = () => <div>Postcards Page</div>;
-const Gallery = () => <div>Gallery Page</div>;
+//const Gallery = () => <div>Gallery Page</div>;
 const SearchUser = () => <div>Search User Page</div>;
 // const UserProfile = () => <div>User Profile Page</div>;
 
