@@ -1,0 +1,22 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+  }
+  
+  .gallery-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-container img {
+    max-width: 100%; /* Ensures the image does not exceed the container width */
+    max-height: 100%; /* Ensures the image does not exceed the container height */
+    object-fit: contain; /* Maintains aspect ratio and fits the entire image within the container */
+  }
