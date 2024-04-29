@@ -1,46 +1,52 @@
 /* Styles for the entire home container */
 .home-container {
   padding: 20px;
-  background-color: #f0f0f0; /* Light grey background for the gallery area */
+  background-color: #f0f0f0;
+  max-width: 100%;
+  height: 1000px;
 }
 
 /* Styles for the gallery container */
 .gallery-container {
-  margin: auto;
   text-align: center;
-  width: 90%; /* Set a max-width and center it */
-  background-color: #ffffff; /* White background for the gallery */
+  width: 100%;
+  height: 900px;
+  background-color: #ffffff;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow around the gallery container */
+  height: auto; /* Adjust height to auto for dynamic resizing */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden; /* Hide overflow */
 }
 
 /* General gallery styles */
 .gallery {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap in the container */
-  justify-content: space-around; /* Even spacing around items */
-  gap: 20px; /* Space between gallery items */
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  overflow: auto; /* Allow scroll if content overflows */
+  padding-bottom: 20px; /* Extra space at the bottom */
 }
 
 /* Individual gallery item styles */
 .gallery-item {
-  flex: 0 1 300px; /* Flex item settings, with basis of 300px */
+  flex: 0 1 300px; /* Adjust the flex-basis and grow/shrink settings */
   display: flex;
-  flex-direction: column; /* Stack image and number vertically */
-  align-items: center; /* Center items horizontally */
-  text-align: center; /* Center text for number */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 /* Image specific styles */
 .gallery-item img {
-  width: 100%; /* Full width of the flex item */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 10px; /* Rounded corners for images */
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 /* Styles for the number under the image */
 .number h3 {
-  margin-top: 10px; /* Space above the number */
+  margin-top: 10px;
   font-size: 20px;
-  color: #333; /* Dark grey for text */
+  color: #333;
 }
