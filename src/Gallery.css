@@ -1,22 +1,46 @@
+/* Styles for the entire home container */
 .home-container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: 80%;
-  }
-  
-  .gallery-container {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid black;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  padding: 20px;
+  background-color: #f0f0f0; /* Light grey background for the gallery area */
+}
 
-  .gallery-container img {
-    max-width: 100%; /* Ensures the image does not exceed the container width */
-    max-height: 100%; /* Ensures the image does not exceed the container height */
-    object-fit: contain; /* Maintains aspect ratio and fits the entire image within the container */
-  }
+/* Styles for the gallery container */
+.gallery-container {
+  margin: auto;
+  text-align: center;
+  width: 90%; /* Set a max-width and center it */
+  background-color: #ffffff; /* White background for the gallery */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow around the gallery container */
+}
+
+/* General gallery styles */
+.gallery {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap in the container */
+  justify-content: space-around; /* Even spacing around items */
+  gap: 20px; /* Space between gallery items */
+}
+
+/* Individual gallery item styles */
+.gallery-item {
+  flex: 0 1 300px; /* Flex item settings, with basis of 300px */
+  display: flex;
+  flex-direction: column; /* Stack image and number vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text for number */
+}
+
+/* Image specific styles */
+.gallery-item img {
+  width: 100%; /* Full width of the flex item */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners for images */
+}
+
+/* Styles for the number under the image */
+.number h3 {
+  margin-top: 10px; /* Space above the number */
+  font-size: 20px;
+  color: #333; /* Dark grey for text */
+}
