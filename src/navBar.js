@@ -7,10 +7,15 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const NavigationBar = ({loginToken, loginState}) => {
 
+  
+   useEffect(() => {
+     const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+      if(userProfile) {
+        console.log(userProfile);
+      }
+ }, []);
 
-  // useEffect(() => {
-  //   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
-  // }, []);
+
 
   if(loginToken) {
     console.log(loginToken);
@@ -51,9 +56,11 @@ const NavigationBar = ({loginToken, loginState}) => {
                 <LinkContainer to="/gallery">
                   <NavDropdown.Item>Global Gallery</NavDropdown.Item>
                 </LinkContainer>
+                {loginState && (
                 <LinkContainer to="/usergallery">
                   <NavDropdown.Item>Personal Gallery</NavDropdown.Item>
                 </LinkContainer>
+              )}
               </NavDropdown>
             </LinkContainer>
             <LinkContainer to="/searchuser">

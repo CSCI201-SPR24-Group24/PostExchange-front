@@ -12,7 +12,6 @@ const Gallery = () =>{
         fetch("https://postexchange.icytools.cn/getGlobalGallery")
         .then(response => response.json())
         .then(data => {
-            console.log(data.data);
             setGallery(data.data);
         })
         .catch(error => {
@@ -20,11 +19,22 @@ const Gallery = () =>{
         })
     }, []);
 
+    const baseUrl = "https://file.postexchange.icytools.cn/img/";
+
     return(
        <div className="home-container">
       <div className="gallery-container">
         <h2>Global gallery</h2>
-            <img src = {`https://file.postexchange.icytools.cn/img/tul5ASm33H.jpg`} />
+            <div className="gallery">
+                {gallery.map((item, index) => (
+                    <div key={index} className="gallery-item">
+                        <img src={baseUrl + `J49rFQpLHw.jpeg`} alt={item.img} />
+                        <div className="number">
+                            <h3>{index + 1}</h3>
+                            </div> {/* Separate div for numbering */}
+                        </div>
+                ))}
+            </div>
 
 
       </div>

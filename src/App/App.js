@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import useLoginToken from './LoginToken';
 import useToken from '../useToken';
 import Gallery from '../Gallery.js';
+import PersonalGallery from '../personalGallery.js';
 
 
 
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/postcards" element={<Postcards />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/usergallery" element={<personalGallery/>} />
           <Route path="/searchuser" element={<SearchUser />} />
 
           <Route element={<PrivateRoute />}>
