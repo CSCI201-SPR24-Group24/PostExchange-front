@@ -42,7 +42,17 @@
     width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: filter 0.3s ease;
   }
+
+  .gallery-item img:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+.gallery-item.clicked {
+    filter: brightness(40%);
+}
   
   /* Styles for the number under the image */
   .number h3 {
@@ -51,3 +61,13 @@
     color: #333;
   }
   
+  .marked-received {
+    background-color: #007bff; /* Blue color */
+    color: white; /* Text color */
+    text-align: center;
+    padding: 10px 0; /* Adjust padding as needed */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
