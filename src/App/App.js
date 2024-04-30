@@ -12,10 +12,10 @@ import useToken from '../useToken';
 import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
+import Postcards from '../Postcards/Postcards.js'
 
 
 
-const Postcards = () => <div>Postcards Page</div>;
 //const Gallery = () => <div>Gallery Page</div>;
 const SearchUser = () => <div>Search User Page</div>;
 // const UserProfile = () => <div>User Profile Page</div>;
