@@ -13,7 +13,6 @@ import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
 import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
-import ViewPostcards from '../Postcards/ViewPostcards.js'
 
 
 

@@ -139,11 +139,11 @@ const PersonalGallery = () =>{
             {/* <div className="viewPostcard-container" style={{ display: selectedImageIndex !== null ? 'block' : 'none' }}> */}
             <div className="viewPostcard-container" style={{ display: 'none' }}>
                 <div className="viewGallery" onClick={handleImageClick}>
-                    {/* userReceived = {gallery[selectedImage].userIDReceived}
+                    userReceived = {gallery[selectedImage].userIDReceived}
                             userSent = {gallery[selectedImage].userIDSent}
                             dateSent = {gallery[selectedImage].timeSent}
                             postcardPicture = {gallery[selectedImage].postcardImage}
-                            postcardMsg = {gallery[selectedImage].postcardMessage} */}
+                            postcardMsg = {gallery[selectedImage].postcardMessage}
                     <div className="front">
                         <img src={baseUrl + `J49rFQpLHw.jpeg`} alt="Front of postcard" />
                     </div>
