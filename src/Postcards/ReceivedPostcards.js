@@ -8,8 +8,8 @@ const ReceivedPostcards = () => {
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
-        // fetch("https://postexchange.icytools.cn/getpostcardNotReceived")
-        fetch("https://postexchange.icytools.cn/getGlobalGallery")
+        fetch("https://postexchange.icytools.cn/getpostcardNotReceived")
+        // fetch("https://postexchange.icytools.cn/getGlobalGallery")
             .then(response => response.json())
             .then(data => {
                 setReceivedPostcards(data.data.map(item => ({ ...item, clicked: false })));
@@ -36,8 +36,30 @@ const ReceivedPostcards = () => {
     const handleMarkReceived = () => {
         // Handle marking the selected image as received
         console.log("Marked image as received:", selectedImage);
-        window.alert("Postcard has been marked as received");
-        window.location.reload();
+
+        // assuming selectedImage contains the postcardID attribute
+        const postcardID = selectedImage.postcardID;
+        
+        fetch(`https://postexchange.icytools.cn/markRecieved?postcardID=${postcardID}`)
+        .then(response => {
+            // Check if the request was successful (status code 200)
+            if (response.ok) {
+                // Show a success message
+                window.alert("Postcard has been marked as received");
+                // Reload the page
+                window.location.reload();
+            } else {
+                // Handle errors
+                console.error('Error marking postcard as received:', response.statusText);
+                // Show an error message
+                window.alert("Failed to mark postcard as received. Please try again later.");
+            }
+        })
+        .catch(error => {
+            console.error('Error marking postcard as received:', error);
+            // Show an error message
+            window.alert("Failed to mark postcard as received. Please check your internet connection.");
+        });
     };
 
     return (
