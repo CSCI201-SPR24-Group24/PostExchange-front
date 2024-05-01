@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import './Postcards.css'; 
+import './ViewPostcards.css'; 
 
-const Postcards = () => { 
-    const [gallery, setPostcards] = useState([]);
+const ViewPostcards = () => { 
+    const [gallery, setViewPostcards] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
-        fetch("https://postexchange.icytools.cn/getpostcardNotReceived")
+        fetch("https://postexchange.icytools.cn/getGlobalGallery")
             .then(response => response.json())
             .then(data => {
-                setPostcards(data.data.map(item => ({ ...item, clicked: false })));
+                setViewPostcards(data.data.map(item => ({ ...item, clicked: false })));
             })
             .catch(error => {
                 console.error("Error fetching gallery data from SQL ", error);
@@ -28,7 +28,7 @@ const Postcards = () => {
                 return { ...item, clicked: false };
             }
         });
-        setPostcards(newGallery);
+        setViewPostcards(newGallery);
         setSelectedImage(newGallery[index].clicked ? index : null);
     };
 
@@ -40,11 +40,12 @@ const Postcards = () => {
     return (
         <div className="home-container">
             <div className="gallery-container">
-                <h2>Postcards</h2>
+                <h2>View Postcards</h2>
                 <div className="gallery">
                     {gallery.map((item, index) => (
                         <div 
                             key={index} 
+                            hihihi
                             className={`gallery-item ${item.clicked ? 'clicked' : ''}`}
                             onClick={() => handleImageClick(index)}
                         >
@@ -68,4 +69,4 @@ const Postcards = () => {
     );
 }
 
-export default Postcards;
+export default ViewPostcards;

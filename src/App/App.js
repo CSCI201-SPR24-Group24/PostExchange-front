@@ -12,7 +12,8 @@ import useToken from '../useToken';
 import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
-import Postcards from '../Postcards/Postcards.js'
+import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
+import ViewPostcards from '../Postcards/ViewPostcards.js'
 
 
 
@@ -59,7 +60,7 @@ const App = () => {
         {/* <NavigationBar loginToken={token}/> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/postcards" element={<Postcards />} />
+          <Route path="/postcards" element={<ReceivedPostcards />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/usergallery" element={<PersonalGallery/>} />
           <Route path="/searchuser" element={<SearchUser />} />
