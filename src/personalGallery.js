@@ -22,39 +22,47 @@ const PersonalGallery = () =>{
 
         },[]);
 
-        // const handleImageClick = (index) => {
-        //     const newGallery = gallery.map((item, i) => {
-        //         if (i === index) {
-        //             return { ...item, clicked: !item.clicked };
-        //         } else {
-        //             return { ...item, clicked: false };
-        //         }
-        //     });
-        //     setReceivedPostcards(newGallery);
-        //     setSelectedImage(newGallery[index].clicked ? index : null);
-        // };
-    
-        // const handleMarkReceived = () => {
-        //     // Handle marking the selected image as received
-        //     console.log("Marked image as received:", selectedImage);
-        // };
-
 
         const navigate = useNavigate();
-        const handleClick = () => {
+
+        const handleClick = (index) => {
             // Handle click event
-            navigate('/ViewPostcards');
-          };
+            // setSelectedImageIndex(index);
+
+            const galleryElements = document.querySelectorAll('.gallery-container');
+            galleryElements.forEach(element => {
+                element.style.display = 'none';
+            });
+
+            const viewElements = document.querySelectorAll('.viewPostcard-container');
+            viewElements.forEach(element => {
+                element.style.display = 'block';
+            });
+        };
+
+        const handleGoBack = () => {
+            // setSelectedImageIndex(null);
+    
+            const galleryElements = document.querySelectorAll('.gallery-container');
+            galleryElements.forEach(element => {
+                element.style.display = 'block';
+            });
+    
+            const viewElements = document.querySelectorAll('.viewPostcard-container');
+            viewElements.forEach(element => {
+                element.style.display = 'none';
+            });
+        };
     
         const baseUrl = "https://file.postexchange.icytools.cn/img/";
 
         return(
-           <div className="home-container">
-          <div className="gallery-container">
+            <div className="home-container">
+            <div className="gallery-container">
             <h2>Personal gallery</h2>
                 <div className="gallery">
                     {gallery.map((item, index) => (
-                        <div key={index} className="gallery-item" onClick={handleClick}> {/* Attach onClick event handler */}
+                        <div key={index} className="gallery-item" onClick={() => handleClick(index)}> {/* Attach onClick event handler */}
                         {/* <div key={index} className="gallery-item"> */}
                             <img src={baseUrl + `J49rFQpLHw.jpeg`} alt={item.img} />
                             <div className="number">
@@ -63,9 +71,20 @@ const PersonalGallery = () =>{
                             </div>
                     ))}
                 </div>
-    
-    
-          </div>
+            </div>
+            {/* <div className="viewPostcard-container" style={{ display: selectedImageIndex !== null ? 'block' : 'none' }}> */}
+            <div className="viewPostcard-container" style={({display: 'none'})}>
+
+                
+                <img src={baseUrl + `J49rFQpLHw.jpeg`}></img>
+                <button className="go-back" onClick={handleGoBack}>Go Back</button>
+                {/* {selectedImageIndex !== null && (
+                    <>
+                        {<img src={baseUrl + `J49rFQpLHw.jpeg`} alt={gallery[selectedImageIndex].img} />}
+                        <button onClick={handleGoBack}>Go Back</button>
+                    </>
+                )} */}
+            </div>
         </div>
         )
 }
