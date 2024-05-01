@@ -36,6 +36,8 @@ const ReceivedPostcards = () => {
     const handleMarkReceived = () => {
         // Handle marking the selected image as received
         console.log("Marked image as received:", selectedImage);
+        window.alert("Postcard has been marked as received");
+        window.location.reload();
     };
 
     return (

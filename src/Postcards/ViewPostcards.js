@@ -49,6 +49,8 @@ const ViewPostcards = () => {
                             className={`gallery-item ${item.clicked ? 'clicked' : ''}`}
                             onClick={() => handleImageClick(index)}
                         >
+                            postcardimgUrl = item.postcardImage
+
                             <img 
                                 src={baseUrl + `J49rFQpLHw.jpeg`} 
                                 alt={item.img} 
