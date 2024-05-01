@@ -61,6 +61,7 @@ const ViewPostcards = () => {
                         </div>
                     ))}
                 </div>
+                
             </div>
             {selectedImage !== null && (
                 <button className="marked-received" onClick={handleMarkReceived}>
