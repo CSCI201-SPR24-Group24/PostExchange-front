@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { md5 } from 'js-md5';
 
 const Login = ({loginToken, setLoginToken, setLoginState}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   // if(loginToken) {
   //   navigate("/userprofile");
@@ -16,30 +18,35 @@ const Login = ({loginToken, setLoginToken, setLoginState}) => {
     // console.log('Login Submitted', { email, password });
     // // Add your logic to handle the login submission here
 
-    const user = 
-    {
-        "status": "OK",
-        "data": {
-            "userId": "1",
-            "email": "johndoe@example.com",
-            "firstName": "John",
-            "lastName": "Doe",
-            "lastLoginTime": "2024-04-10 03:03:27",
-            "numberSent": 5,
-            "numberReceived": 3,
-            "userCountry": "US",
-            "userBio": "Just a regular guy who loves traveling.",
-            "profilePicture": "profile1.jpg",
-            "lastDonated": "2023-04-01"
-        }
-    };
+    try {
+      var hash = md5(password);
+      console.log(email);
+      console.log(hash);
 
-    localStorage.setItem('userProfile', JSON.stringify(user));
-    sessionStorage.setItem('userProfile', JSON.stringify(user));
+      const response = await fetch(`http://postexchange.icytools.cn/doLogin?email=${email}&password=${hash}`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        console.log(response);
+        throw new Error('Login error');
+      }
+
+      const logResp = await response.json();
+      console.log('Success:', logResp);
+      setLoginToken(logResp.data);
+      setLoginState(true);
+
+      localStorage.setItem('userProfile', JSON.stringify(logResp));
+      sessionStorage.setItem('userProfile', JSON.stringify(logResp));
     
-    setLoginToken(user.data);
-    setLoginState(true);
-    navigate('/');
+      navigate('/');
+
+    } catch (error) {
+      console.log('Error: ', error);
+      setError("Incorrect username or password");
+    }
+
   };
 
   return (
@@ -47,6 +54,7 @@ const Login = ({loginToken, setLoginToken, setLoginState}) => {
       <Row className="justify-content-md-center">
         <Col md={6}>
           <Form onSubmit={handleSubmit}>
+            {error && <Alert variant="danger">{error}</Alert>} 
             <h2 className="mb-3">Login</h2>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

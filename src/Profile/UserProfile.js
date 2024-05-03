@@ -12,6 +12,8 @@ const UserProfile = ({loginToken, setLoginToken, setLoginState}) => {
     e.preventDefault();
     setLoginToken(null);
     setLoginState(false);
+    localStorage.setItem('userProfile', null);
+    sessionStorage.setItem('userProfile', null);
     navigate('/');
   };
 
