@@ -12,10 +12,10 @@ import useToken from '../useToken';
 import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
+import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
 
 
 
-const Postcards = () => <div>Postcards Page</div>;
 //const Gallery = () => <div>Gallery Page</div>;
 const SearchUser = () => <div>Search User Page</div>;
 // const UserProfile = () => <div>User Profile Page</div>;
@@ -59,7 +59,7 @@ const App = () => {
         {/* <NavigationBar loginToken={token}/> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/postcards" element={<Postcards />} />
+          <Route path="/postcards" element={<ReceivedPostcards />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/usergallery" element={<PersonalGallery/>} />
           <Route path="/searchuser" element={<SearchUser />} />
