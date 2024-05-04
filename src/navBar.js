@@ -49,7 +49,21 @@ const NavigationBar = ({loginToken, loginState}) => {
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/postcards">
-              <Nav.Link>Postcards</Nav.Link>
+              <NavDropdown title="Postcards" id="basic-nav-dropdown">
+                <LinkContainer to="/postcards">
+                  <NavDropdown.Item>Postcards</NavDropdown.Item>
+                </LinkContainer>
+                {loginState && (
+                <LinkContainer to="/createpostcard">
+                  <NavDropdown.Item>Create Postcard</NavDropdown.Item>
+                </LinkContainer>
+                )}
+                {loginState && (
+                <LinkContainer to="/receivedpostcard">
+                  <NavDropdown.Item>Received Postcard</NavDropdown.Item>
+                </LinkContainer>
+                )}
+              </NavDropdown>
             </LinkContainer>
             <LinkContainer to="/gallery">
               <NavDropdown title="Gallery" id="basic-nav-dropdown">

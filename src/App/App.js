@@ -12,6 +12,8 @@ import useToken from '../useToken';
 import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
+import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
+import CreatePostcard from '../Postcards/CreatePostcard.js'
 
 
 
@@ -63,6 +65,8 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/usergallery" element={<PersonalGallery/>} />
           <Route path="/searchuser" element={<SearchUser />} />
+          <Route path="/createpostcard" element={<CreatePostcard />} />
+          <Route path="/receivedpostcard" element={<ReceivedPostcards />} />
 
           <Route element={<PrivateRoute />}>
             <Route path='/' element={<Home />} />
