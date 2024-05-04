@@ -23,8 +23,9 @@ const Login = ({loginToken, setLoginToken, setLoginState}) => {
       console.log(email);
       console.log(hash);
 
-      const response = await fetch(`http://postexchange.icytools.cn/doLogin?email=${email}&password=${hash}`, {
+      const response = await fetch(`https://postexchange.icytools.cn/doLogin?email=${email}&password=${hash}`, {
         method: 'POST',
+        credentials: 'include',
       });
 
       if (!response.ok) {
