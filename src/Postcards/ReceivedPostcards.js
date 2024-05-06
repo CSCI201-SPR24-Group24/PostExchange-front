@@ -8,8 +8,11 @@ const ReceivedPostcards = () => {
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
-        fetch("https://postexchange.icytools.cn/getpostcardNotReceived")
+    
         // fetch("https://postexchange.icytools.cn/getGlobalGallery")
+        fetch("https://postexchange.icytools.cn/getpostcardNotReceived",
+            {credentials: 'include'}
+        )
             .then(response => response.json())
             .then(data => {
                 setReceivedPostcards(data.data.map(item => ({ ...item, clicked: false })));
@@ -65,7 +68,7 @@ const ReceivedPostcards = () => {
     return (
         <div className="home-container">
             <div className="gallery-container">
-                <h2>Postcards</h2>
+                <h2>Received Postcards</h2>
                 <div className="gallery">
                     {gallery.map((item, index) => (
                         <div 

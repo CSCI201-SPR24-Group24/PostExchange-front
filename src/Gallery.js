@@ -25,7 +25,7 @@ const Gallery = () =>{
     return(
        <div className="home-container">
       <div className="gallery-container">
-        <h2>Global gallery</h2>
+        <h2>Global Gallery</h2>
             <div className="gallery">
                 {gallery.map((item, index) => (
                     <div key={index} className="gallery-item">
