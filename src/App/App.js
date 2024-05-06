@@ -12,6 +12,7 @@ import useToken from '../useToken';
 import Gallery from '../Gallery.js';
 import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
+import Postcard from '../Postcards/ReceivedPostcards.js'
 
 
 
