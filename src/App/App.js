@@ -14,6 +14,7 @@ import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
 import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
 import CreatePostcard from '../Postcards/CreatePostcard.js'
+import SignUp from '../SignUp/SignUp.js';
 
 
 
@@ -77,10 +78,13 @@ const App = () => {
           </Route>
           <Route element={<AnonymousRoute />}>
             {/* <Route path='/register' element={<RegisterUser />} /> */}
+            {/* <Route path='/forgotpassword' element={<ForgotPassword />} /> */}
             <Route path='/login' element={
               <Login loginToken={loginToken} setLoginToken={setLoginToken} setLoginState={setLoginState}/>
             } />
-            {/* <Route path='/forgotpassword' element={<ForgotPassword />} /> */}
+            <Route path='/signup' element={
+              <SignUp loginToken={loginToken} setLoginToken={setLoginToken} setLoginState={setLoginState}/>
+            } />
           </Route>
 
           {/* <Route path="/userprofile" element={
