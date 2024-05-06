@@ -14,13 +14,14 @@ import PersonalGallery from '../personalGallery.js';
 import Home from '../Home/Home.js'
 import ReceivedPostcards from '../Postcards/ReceivedPostcards.js'
 import CreatePostcard from '../Postcards/CreatePostcard.js'
+import SearchUser from '../SearchUser/SearchUser.js';
 
 
 
 
 const Postcards = () => <div>Postcards Page</div>;
 //const Gallery = () => <div>Gallery Page</div>;
-const SearchUser = () => <div>Search User Page</div>;
+// const SearchUser = () => <div>Search User Page</div>;
 // const UserProfile = () => <div>User Profile Page</div>;
 
 function PrivateRoute () {
