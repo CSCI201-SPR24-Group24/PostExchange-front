@@ -72,7 +72,27 @@ const Home = () => {
 
     ws.current.onmessage = (e) => {
       const message = JSON.parse(e.data);
-      setActivities(prevActivities => [message, ...prevActivities.slice(0, 6)]);
+      if (message.type === "SEND") {
+        const newActivity = {
+          postcardId: message.data.postcardId,
+          userIDSent: message.data.fromUserId,
+          userNameSent: message.data.fromUserName,
+          userCountrySent: message.data.fromUserCountry,
+          userIDReceived: message.data.toUserId,
+          userNameReceived: message.data.toUserName,
+          userCountryReceived: message.data.toUserCountry,
+        };
+
+        fetch(`https://postexchange.icytools.cn/getPostcard?id=${message.data.postcardId}`)
+          .then(res => res.json())
+          .then(postcardData => {
+            if (postcardData.status === 'OK') {
+              newActivity.timeSent = postcardData.data.timeSent;
+              setActivities(prevActivities => [newActivity, ...prevActivities.slice(0, 6)]);
+            }
+          })
+          .catch(error => console.error(`Failed fetch for postcard with ID ${message.data.postcardId}`, error));
+      }
     };
 
     ws.current.onerror = (error) => {
