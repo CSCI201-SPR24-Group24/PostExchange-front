@@ -17,6 +17,7 @@ import CreatePostcard from '../Postcards/CreatePostcard.js'
 
 
 
+
 const Postcards = () => <div>Postcards Page</div>;
 //const Gallery = () => <div>Gallery Page</div>;
 const SearchUser = () => <div>Search User Page</div>;

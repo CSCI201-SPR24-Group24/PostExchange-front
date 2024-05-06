@@ -11,10 +11,13 @@ const PersonalGallery = () =>{
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
         if(userProfile){
-            fetch("https://postexchange.icytools.cn/getPersonalGallery",)
+            fetch("https://postexchange.icytools.cn/getPersonalGallery",
+        {credentials: 'include'}
+    )
             .then(response => response.json())
             .then(data => {
                 setPersonalGallery(data.data);
+                console.log(data);
             })
         }
 
@@ -26,7 +29,7 @@ const PersonalGallery = () =>{
         return(
            <div className="home-container">
           <div className="gallery-container">
-            <h2>Global gallery</h2>
+            <h2>Your Gallery</h2>
                 <div className="gallery">
                     {gallery.map((item, index) => (
                         <div key={index} className="gallery-item">
