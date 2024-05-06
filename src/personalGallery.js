@@ -60,14 +60,19 @@ const PersonalGallery = () =>{
     const[gallery, setPersonalGallery] = useState([]);
     const [isFlipped, setIsFlipped] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [userReceived, setUserReceived] = useState('');
+    const [userSent, setUserSent] = useState('');
+    const [dateSent, setDateSent] = useState('');
+    const [postcardPicture, setPostcardPicture] = useState('');
+    const [postcardMsg, setPostcardMsg] = useState('');
     const navigate = useNavigate();
     const prevCount = useRef(1);
 
-    var userReceived;
-    var userSent;
-    var dateSent;
-    var postcardPicture;
-    var postcardMsg;
+    // var userReceived;
+    // var userSent;
+    // var dateSent;
+    // var postcardPicture;
+    // var postcardMsg;
 
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
@@ -150,17 +155,12 @@ const PersonalGallery = () =>{
         
         const frontCard = document.querySelectorAll('.front');
         const backCard = document.querySelectorAll('.back');
-
-        console.log("User ID Received: " + image.userIDReceived);
-        console.log("User ID Sent: " + image.userIDSent);
-        console.log("Time sent: " + image.timeSent);
-        console.log("Postcard image: " + image.postcardImage);
-        console.log("Postcard message: " + image.postcardMessage);
-        userReceived = image.userIDReceived;
-        userSent = image.userIDSent;
-        dateSent = image.timeSent;
-        postcardPicture = image.postcardImage;
-        postcardMsg = image.postcardMessage;
+        
+        setUserReceived(image.userIDReceived);
+        setUserSent(image.userIDSent);
+        setDateSent(image.timeSent);
+        setPostcardPicture(image.postcardImage);
+        setPostcardMsg(image.postcardMessage);
         
         if (prevCount.current % 2 === 0) {
             frontCard.forEach(element => {
