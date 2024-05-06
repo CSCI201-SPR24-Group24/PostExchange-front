@@ -63,11 +63,11 @@ const PersonalGallery = () =>{
     const navigate = useNavigate();
     const prevCount = useRef(1);
 
-    var userReceived = 1;
-    var userSent = 1;
-    var dateSent = '1/23/34';
+    var userReceived;
+    var userSent;
+    var dateSent;
     var postcardPicture;
-    var postcardMsg = 'hello';
+    var postcardMsg;
 
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
@@ -156,11 +156,11 @@ const PersonalGallery = () =>{
         console.log("Time sent: " + image.timeSent);
         console.log("Postcard image: " + image.postcardImage);
         console.log("Postcard message: " + image.postcardMessage);
-        userReceived = image.userIDReceived
-        userSent = image.userIDSent
-        dateSent = image.timeSent
-        postcardPicture = image.postcardImage
-        postcardMsg = image.postcardMessage
+        userReceived = image.userIDReceived;
+        userSent = image.userIDSent;
+        dateSent = image.timeSent;
+        postcardPicture = image.postcardImage;
+        postcardMsg = image.postcardMessage;
         
         if (prevCount.current % 2 === 0) {
             frontCard.forEach(element => {
@@ -206,15 +206,12 @@ const PersonalGallery = () =>{
         {/* <div className="viewPostcard-container" style={{ display: selectedImageIndex !== null ? 'block' : 'none' }}> */}
         <div className="viewPostcard-container" style={{ display: 'none' }}>
             {/* <div className="viewGallery" onClick={handleImageClick(gallery[selectedImage])}> */}
-            <div className="viewGallery" onClick={() => handleImageClick(gallery[selectedImage])}>
-
-                
+            <div className="viewGallery" onClick={() => handleImageClick(selectedImage)}>
                 <div className="front">
                     <img src={baseUrl + `J49rFQpLHw.jpeg`} alt="Front of postcard" />
                 </div>
                 <div className="back" style={{display:'none'}} >
                     <div className="backInfo">
-                    {/* <p><b>Date Sent: </b><span style={{ textDecoration: 'underline' }}> datedate</span></p> */}
                     <p><b>Date Sent: </b><span style={{ textDecoration: 'underline' }}>{dateSent}</span></p>
                     <p><b>To: </b><span style={{ textDecoration: 'underline' }}>{userReceived}</span></p>
                     <p><b>From: </b><span style={{ textDecoration: 'underline' }}>{userSent}</span></p>
