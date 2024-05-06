@@ -1,80 +1,78 @@
 import React, { useState } from 'react';
 import FileUploader from './FileUploader';
+import './CreatePostcard.css';
 
 function CreatePostcard() {
-    const [user, setUser] = useState(null); // to store the selected or random user
-    const [searchInput, setSearchInput] = useState(''); // to store search input by the user
-    const [imageTag, setImageTag] = useState(''); // to store image tag
+    const [user, setUser] = useState(null);
+    const [searchInput, setSearchInput] = useState('');
+    const [imageTag, setImageTag] = useState('');
 
     const handleSearchChange = (e) => {
         setSearchInput(e.target.value);
     };
 
-    const handleImageTagChange = (e) => {
-        setImageTag(e.target.value);
-    };
-
     const getRandomUser = async () => {
         try {
-          const response = await fetch(`https://postexchange.icytools.cn/getRandUser`, {
-            method: 'GET',
-            credentials: 'include',
-          });
-
-          if (!response.ok) {
-            console.log(response);
-            throw new Error('Login error');
-          }
-
-          const logResp = await response.json();
-          console.log('Success:', logResp);
+            const response = await fetch('https://postexchange.icytools.cn/getRandUser', {
+                method: 'GET',
+                credentials: 'include',
+            });
+            if (!response.ok) throw new Error('Failed to fetch random user');
+            const { data } = await response.json();
+            setUser(data);
         } catch (error) {
-
+            console.error('Error fetching random user:', error);
         }
-      };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!user) {
-            alert('Please select a user before sending a postcard.');
             return;
         }
         try {
             const response = await fetch('https://postexchange.icytools.cn/createPostcard', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({
-                    userTo: user.id, // Assuming 'id' is the user identifier expected by the API
-                    imageTag: imageTag, // Optional image tag
+                    userTo: user.userId,
+                    imageTag: imageTag,
                 })
             });
             if (!response.ok) throw new Error('Failed to send postcard');
-            alert('Postcard sent successfully!');
-            // Reset the form and user selection
+            setSearchInput('');
             setImageTag('');
             setUser(null);
         } catch (error) {
             console.error('Error sending postcard:', error);
-            alert('Failed to send postcard. Please try again.');
         }
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="create-postcard-container">
+            <FileUploader onUploadSuccess={setImageTag} />
+            <div className="search-container">
                 <input
                     type="text"
                     placeholder="Search user"
+                    className="search-input"
                     value={searchInput}
                     onChange={handleSearchChange}
                 />
-                <button type="button" onClick={getRandomUser}>Random User</button>
-                <FileUploader />
-                <button type="submit" onClick={handleSubmit}>Create Postcard</button>
-            </form>
-            {user && <div>Selected User: {user.name}</div>}
+                <button className="search-button" onClick={getRandomUser}>Random User</button>
+            </div>
+            <button className="submit-button" onClick={handleSubmit}>Create Postcard</button>
+            {user && (
+                <div className="user-details">
+                    <h3>Selected User: {user.firstName} {user.lastName}</h3>
+                    <p>Email: {user.email}</p>
+                    <p>Country: {user.userCountry}</p>
+                    <p>Bio: {user.userBio}</p>
+                </div>
+            )}
         </div>
     );
 }

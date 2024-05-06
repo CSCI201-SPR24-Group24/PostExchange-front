@@ -1,61 +1,52 @@
 import React, { useState } from 'react';
+import { FaPlus } from 'react-icons/fa'; 
+import './CreatePostcard.css';
 
-function FileUploader() {
+function FileUploader({ onUploadSuccess }) {
     const [file, setFile] = useState(null);
-    const [imageTag, setImageTag] = useState('');
+    const [previewUrl, setPreviewUrl] = useState(null); 
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]); // Capture the first file
+    const handleFileChange = async (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+            setPreviewUrl(URL.createObjectURL(selectedFile));  
+            await uploadFile(selectedFile);
+        }
     };
 
-    const uploadFile = async () => {
-        if (!file) {
-            alert('Please select a file to upload.');
-            return;
-        }
+    const uploadFile = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
-
+    
         try {
             const response = await fetch('https://postexchange.icytools.cn/uploadFile', {
                 method: 'POST',
-                body: formData, // multipart/form-data is set automatically with FormData
+                credentials: 'include',
+                body: formData, 
             });
             if (!response.ok) throw new Error('Failed to upload file');
-            const data = await response.json();
-            setImageTag(data.tag); // Assume the server returns an object with a tag
-            alert('File uploaded successfully!');
-            updatePostcardImage(data.tag);
+            const responseData = await response.json();  // Assuming your response is a valid JSON
+            if (responseData.status === "OK" && responseData.data && responseData.data.tag) {
+                onUploadSuccess(responseData.data.tag);  // Correctly accessing the tag
+            } else {
+                throw new Error('No tag found in the response');
+            }
         } catch (error) {
             console.error('Error uploading file:', error);
-            alert('Failed to upload file. Please try again.');
         }
-    };
-
-    const updatePostcardImage = async (tag) => {
-        try {
-            const response = await fetch('https://postexchange.icytools.cn/updatePostcardImage', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    imageTag: tag
-                })
-            });
-            if (!response.ok) throw new Error('Failed to update postcard image');
-            alert('Postcard image updated successfully!');
-        } catch (error) {
-            console.error('Error updating postcard image:', error);
-            alert('Failed to update postcard image. Please try again.');
-        }
-    };
+    };    
 
     return (
-        <div>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={uploadFile}>Upload File</button>
-            {imageTag && <div>Image Tag: {imageTag}</div>}
+        <div className="file-upload-container">
+            <label htmlFor="file-upload" className="file-upload-label">
+                {previewUrl ? (
+                    <img src={previewUrl} alt="Uploaded" className="image-preview" />
+                ) : (
+                    <FaPlus size={50} color="gray" />
+                )}
+                <input id="file-upload" type="file" onChange={handleFileChange} />
+            </label>
         </div>
     );
 }
