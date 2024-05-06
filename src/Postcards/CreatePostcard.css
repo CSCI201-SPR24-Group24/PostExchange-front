@@ -1,13 +1,31 @@
-/* FileUploader Styles */
+.home-container {
+    padding: 20px;
+    background-color: #f0f0f0;
+    max-width: 100%;
+    height: 1000px;
+  }
+
+.create-postcard-container {
+    text-align: center;
+    width: 100%;
+    height: 900px;
+    background-color: #ffffff;
+    padding: 20px;
+    height: auto; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid black; 
+}
+
 .file-upload-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     width: 400px;
-    border: 2px dashed gray;
+    border: 2px solid rgb(195, 195, 195);
     cursor: pointer;
-    overflow: hidden;  /* Ensures the image does not overflow the boundaries of the container */
+    overflow: hidden;
 }
 
 .file-upload-label {
@@ -25,9 +43,13 @@
 .image-preview {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the area without distorting the aspect ratio */
+    object-fit: cover;
 }
 
+.search-results-list
+{
+    margin-bottom: 15px;
+}
 
 .create-postcard-container {
     display: flex;
@@ -49,9 +71,11 @@
 
 .search-input {
     padding: 8px;
-    margin-right: 10px; /* Adds space between input and button */
+    margin-right: 10px; 
     border: 1px solid #ccc;
     border-radius: 4px;
+    max-width: 200px; 
+    flex-grow: 0;
 }
 
 .search-button, .submit-button {

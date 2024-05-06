@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa'; 
 import './CreatePostcard.css';
 
-function FileUploader({ onUploadSuccess }) {
+function FileUploader({ onUploadSuccess, setPreviewUrl, previewUrl }) {
     const [file, setFile] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState(null); 
 
     const handleFileChange = async (event) => {
         const selectedFile = event.target.files[0];
