@@ -87,9 +87,14 @@ const NavigationBar = ({loginToken, loginState}) => {
                 </LinkContainer>
               </React.Fragment>
             ) : (
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              <React.Fragment>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/signup">
+                  <Nav.Link>Sign Up</Nav.Link>
+                </LinkContainer>
+              </React.Fragment>
             )}
           </Nav>
         </Navbar.Collapse>
