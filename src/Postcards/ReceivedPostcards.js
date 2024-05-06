@@ -24,7 +24,7 @@ const ReceivedPostcards = () => {
 
     const baseUrl = "https://file.postexchange.icytools.cn/img/";
 
-    const handleImageClick = (index) => {
+    const handleImageClick = (index, item) => {
         const newGallery = gallery.map((item, i) => {
             if (i === index) {
                 return { ...item, clicked: !item.clicked };
@@ -33,7 +33,8 @@ const ReceivedPostcards = () => {
             }
         });
         setReceivedPostcards(newGallery);
-        setSelectedImage(newGallery[index].clicked ? index : null);
+        // setSelectedImage(newGallery[index].clicked ? newGallery[index] : null);
+        setSelectedImage(item);
     };
 
     const handleMarkReceived = () => {
@@ -41,9 +42,13 @@ const ReceivedPostcards = () => {
         console.log("Marked image as received:", selectedImage);
 
         // assuming selectedImage contains the postcardID attribute
-        const postcardID = selectedImage.postcardID;
+        const postcardID = selectedImage.postcardId;
+        console.log("Postcard id: " + postcardID);
         
-        fetch(`https://postexchange.icytools.cn/markRecieved?postcardID=${postcardID}`)
+        fetch(`https://postexchange.icytools.cn/markReceived?postcardID=${postcardID}`,
+        {credentials: 'include',
+        method: 'POST'}
+    )
         .then(response => {
             // Check if the request was successful (status code 200)
             if (response.ok) {
@@ -74,7 +79,7 @@ const ReceivedPostcards = () => {
                         <div 
                             key={index} 
                             className={`gallery-item ${item.clicked ? 'clicked' : ''}`}
-                            onClick={() => handleImageClick(index)}
+                            onClick={() => handleImageClick(index, item)}
                         >
                             <img 
                                 src={baseUrl + `J49rFQpLHw.jpeg`} 
