@@ -65,10 +65,6 @@ const UserProfile = ({ loginToken, setLoginToken, setLoginState }) => {
             <ListGroup className="list-group-flush">
               <ListGroup.Item>Email: {user.email}</ListGroup.Item>
               <ListGroup.Item>Country: {user.userCountry}</ListGroup.Item>
-              <ListGroup.Item>Last login: {user.lastLoginTime}</ListGroup.Item>
-              <ListGroup.Item>Postcards Sent: {user.numberSent}</ListGroup.Item>
-              <ListGroup.Item>Postcards Received: {user.numberReceived}</ListGroup.Item>
-              <ListGroup.Item>Last Donated: {user.lastDonated}</ListGroup.Item>
             </ListGroup>
           </Card>
         ) : (
