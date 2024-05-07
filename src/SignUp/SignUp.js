@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { md5 } from 'js-md5';
+import "./SignUp.css"
 
 const SignUp = ({loginToken, setLoginToken, setLoginState}) => {
   const navigate = useNavigate();
@@ -184,7 +185,7 @@ const SignUp = ({loginToken, setLoginToken, setLoginState}) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button className="register-button" variant="primary" type="submit">
         Register
       </Button>
     </Form>
