@@ -147,12 +147,12 @@ const PersonalGallery = () =>{
                 </div>
                 <div className="back" style={{display:'none'}} >
                     <div className="backInfo">
-                    <p><b>Date Sent: </b><span style={{ textDecoration: 'underline' }}>{dateSent}</span></p>
+                    <p><b>To: </b><span style={{ textDecoration: 'underline' }}>{userReceived}</span></p>
+                    <p><b>From: </b><span style={{ textDecoration: 'underline' }}>{userSent}</span></p>
                     </div>
                     <div className="verticalLine"></div>
                     <div className="backMessage">
-                    <p><b>To: </b><span style={{ textDecoration: 'underline' }}>{userReceived}</span></p>
-                    <p><b>From: </b><span style={{ textDecoration: 'underline' }}>{userSent}</span></p>
+                    <p><b>Date Sent: </b><span style={{ textDecoration: 'underline' }}>{dateSent}</span></p>
                     </div>
                 </div>
                 <div className="revealPostcardMsg">
