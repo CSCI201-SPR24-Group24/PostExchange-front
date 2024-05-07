@@ -65,21 +65,25 @@ const NavigationBar = ({loginToken, loginState}) => {
                 )}
               </NavDropdown>
             </LinkContainer>}
+            {loginState ? (
             <LinkContainer to="/gallery">
               <NavDropdown title="Gallery" id="basic-nav-dropdown">
                 <LinkContainer to="/gallery">
                   <NavDropdown.Item>Global Gallery</NavDropdown.Item>
                 </LinkContainer>
-                {loginState && (
                 <LinkContainer to="/usergallery">
                   <NavDropdown.Item>Personal Gallery</NavDropdown.Item>
                 </LinkContainer>
-              )}
               </NavDropdown>
             </LinkContainer>
-            <LinkContainer to="/searchuser">
-              <Nav.Link>Search User</Nav.Link>
+            ) : (
+            <LinkContainer to="/gallery">
+              <Nav.Link>Global Gallery</Nav.Link>
             </LinkContainer>
+            )}
+            {/* <LinkContainer to="/searchuser">
+              <Nav.Link>Search User</Nav.Link>
+            </LinkContainer> */}
             {loginState ? (
               <React.Fragment>
                 <LinkContainer to="/userprofile">

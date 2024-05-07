@@ -123,7 +123,7 @@ const PersonalGallery = () =>{
 
     
 
-    const baseUrl = "https://file.postexchange.icytools.cn/img/";
+    const baseUrl = "https://file.postexchange.icytools.cn/img";
 
     return(
         <div className="home-container">
@@ -132,7 +132,10 @@ const PersonalGallery = () =>{
             <div className="gallery">
                 {gallery.map((item, index) => (
                     <div key={index} className="gallery-item" onClick={() => handleClick(index, item)}> {/* Attach onClick event handler */}
-                        <img src={baseUrl + `J49rFQpLHw.jpeg`} alt={item.img} />
+                        <img 
+                            src={`${baseUrl}/${item.postcardImage}`} 
+                            alt={`Postcard from user ${item.userIDSent} to user ${item.userIDReceived}`} 
+                        />
                         <div className="number">
                             <h3></h3>
                             </div> {/* Separate div for numbering */}

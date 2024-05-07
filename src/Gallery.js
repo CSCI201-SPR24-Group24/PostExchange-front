@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import './Gallery.css';
+import { baseAPIDomain } from "./App/App";
 
 
 const Gallery = () =>{
@@ -9,7 +10,7 @@ const Gallery = () =>{
 
     useEffect(() =>{
 
-        fetch("https://postexchange.icytools.cn/getGlobalGallery")
+        fetch(`https://${baseAPIDomain}/getGlobalGallery`)
         .then(response => response.json())
         .then(data => {
             setGallery(data.data);
@@ -20,7 +21,7 @@ const Gallery = () =>{
         })
     }, []);
 
-    const baseUrl = "https://file.postexchange.icytools.cn/img/";
+    const baseUrl = `https://file.${baseAPIDomain}/img`;
 
     return(
        <div className="home-container">
@@ -29,7 +30,10 @@ const Gallery = () =>{
             <div className="gallery">
                 {gallery.map((item, index) => (
                     <div key={index} className="gallery-item">
-                        <img src={baseUrl + `Fp4Mzvrt2W.png`} alt={item.img} />
+                        <img 
+                            src={`${baseUrl}/${item.postcardImage}`} 
+                            alt={`Postcard from user ${item.userIDSent} to user ${item.userIDReceived}`} 
+                        />
                         <div className="number">
                             <h3>{index + 1}</h3>
                             </div> {/* Separate div for numbering */}

@@ -18,6 +18,7 @@ import SignUp from '../SignUp/SignUp.js';
 
 
 
+export const baseAPIDomain = `postexchange.icytools.cn`;
 
 const Postcards = () => <div>Postcards Page</div>;
 //const Gallery = () => <div>Gallery Page</div>;

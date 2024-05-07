@@ -1,5 +1,6 @@
 import './Home.css'; 
 import React, { useEffect, useState, useRef } from 'react';
+import { baseAPIDomain } from '../App/App';
 
 const Home = () => {
   const isLoggedIn = true; 
@@ -18,7 +19,7 @@ const Home = () => {
   const ws = useRef(null);
 
   useEffect(() => {
-    fetch("https://postexchange.icytools.cn/getHomepageData")
+    fetch(`https://${baseAPIDomain}/getHomepageData`)
       .then(response => response.json())
       .then(data => {
         if (data.status === "OK" && data.data) {
@@ -46,7 +47,7 @@ const Home = () => {
           });
 
           loadedActivities.forEach(activity => {
-            fetch(`https://postexchange.icytools.cn/getPostcard?id=${activity.postcardId}`)
+            fetch(`https://${baseAPIDomain}/getPostcard?id=${activity.postcardId}`)
               .then(res => res.json())
               .then(postcardData => {
                 if (postcardData.status === 'OK') {
@@ -64,7 +65,7 @@ const Home = () => {
       });
 
       
-    ws.current = new WebSocket('wss://postexchange.icytools.cn/activity_socket');
+    ws.current = new WebSocket(`wss://${baseAPIDomain}/activity_socket`);
 
     ws.current.onopen = () => {
       console.log('WebSocket is connected');
@@ -83,7 +84,7 @@ const Home = () => {
           userCountryReceived: message.data.toUserCountry,
         };
 
-        fetch(`https://postexchange.icytools.cn/getPostcard?id=${message.data.postcardId}`)
+        fetch(`https://${baseAPIDomain}/getPostcard?id=${message.data.postcardId}`)
           .then(res => res.json())
           .then(postcardData => {
             if (postcardData.status === 'OK') {
@@ -116,22 +117,22 @@ const Home = () => {
       <div className="gallery-container">
         <h2>Gallery of Last 5 Postcards</h2>
         <div className="postcard-gallery">
-          {postcardImages.map((imageName, index) => (
+          {/* {postcardImages.map((imageName, index) => (
             <img
                 key={index}
                 src={`/${imageName}`} 
                 alt={`Postcard ${index + 1}`}
                 className="postcard-image"
             />
-          ))}
-          {/*{postcards.map((postcard, index) => (
+          ))} */}
+          {postcards.map((postcard, index) => (
             <img
               key={index}
-              src={`https://file.postexchange.icytools.cn/img/${postcard.postcardImage}`}
+              src={`https://file.${baseAPIDomain}/img/${postcard.postcardImage}`}
               alt={`Postcard from user ${postcard.userIDSent} to user ${postcard.userIDReceived}`}
               className="postcard-image"
             />
-          ))}*/}
+          ))}
         </div>
       </div>
       <div className="activities-container">

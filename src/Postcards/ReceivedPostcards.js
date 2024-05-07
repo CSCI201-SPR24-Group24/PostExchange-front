@@ -22,7 +22,7 @@ const ReceivedPostcards = () => {
             });
     }, []);
 
-    const baseUrl = "https://file.postexchange.icytools.cn/img/";
+    const baseUrl = "https://file.postexchange.icytools.cn/img";
 
     const handleImageClick = (index, item) => {
         const newGallery = gallery.map((item, i) => {
@@ -82,8 +82,8 @@ const ReceivedPostcards = () => {
                             onClick={() => handleImageClick(index, item)}
                         >
                             <img 
-                                src={baseUrl + `J49rFQpLHw.jpeg`} 
-                                alt={item.img} 
+                                src={`${baseUrl}/${item.postcardImage}`} 
+                                alt={`Postcard from user ${item.userIDSent} to user ${item.userIDReceived}`} 
                             />
                             <div className="number">
                                 <h3></h3>
