@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 const PersonalGallery = () =>{
 
-    const[gallery, setPersonalGallery] = useState([]);
+    const [gallery, setPersonalGallery] = useState([]);
     const [isFlipped, setIsFlipped] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [userReceived, setUserReceived] = useState('');
@@ -16,6 +16,10 @@ const PersonalGallery = () =>{
     const [postcardMsg, setPostcardMsg] = useState('');
     const navigate = useNavigate();
     const prevCount = useRef(1);
+
+    const [clickedPostcard, setClickedPostcard] = useState({
+        postcardImage: 'baseUrl + `J49rFQpLHw.jpeg'
+    });
 
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'));
@@ -58,6 +62,8 @@ const PersonalGallery = () =>{
         backButton.forEach(element => {
             element.style.display = 'block';
         });
+
+        setClickedPostcard(item);
     };
 
     
@@ -146,7 +152,7 @@ const PersonalGallery = () =>{
         <div className="viewPostcard-container" style={{ display: 'none' }}>
             <div className="viewGallery" onClick={() => handleImageClick(selectedImage)}>
                 <div className="front">
-                    <img src={baseUrl + `J49rFQpLHw.jpeg`} alt="Front of postcard" />
+                    <img src={`${baseUrl}/${clickedPostcard.postcardImage}`} alt="Front of postcard" />
                 </div>
                 <div className="back" style={{display:'none'}} >
                     <div className="backInfo">
